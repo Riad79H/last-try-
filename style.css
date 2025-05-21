@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Scroll bar hide korar jonno */
+    font-family: sans-serif;
+}
+
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('love_background.jpg'); /* Tomar background image-er path */
+    background-size: cover;
+    background-position: center;
+    z-index: -2; /* Background-e thakar jonno */
+}
+
+.background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3); /* Ektu halka overlay for love effect */
+    z-index: -1;
+}
+
+.rose-container {
+    position: absolute;
+    bottom: -200px; /* Initial position golap mati-r niche */
+    opacity: 0;
+    transition: bottom 2s ease-out, opacity 2s ease-out;
+}
+
+.rose {
+    width: 200px; /* Golaper size */
+    height: auto;
+}
+
+.rose-container.grow {
+    bottom: 50%;
+    transform: translateY(50%);
+    opacity: 1;
+}
+
+.falling-flowers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Click event golaper dike pass korar jonno */
+}
+
+.flower {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    opacity: 0;
+    animation: fall linear infinite;
+}
+
+.flower img {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.message-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    opacity: 1;
+    z-index: 10;
+}
+
+.message-container.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.message {
+    color: #e91e63; /* Love color */
+    font-size: 2em;
+}
